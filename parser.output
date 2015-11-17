@@ -1,0 +1,3999 @@
+Grammar
+
+    0 $accept: template $end
+
+    1 template: typelines
+
+    2 typelines: typelines typeline
+    3          | typeline
+
+    4 typeline: header
+    5         | declaration SEMICOLON
+    6         | function
+
+    7 header: HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+
+    8 declaration: rettype decl
+
+    9 decl: decl COMMA IDENTIFIER
+   10     | decl COMMA IDENTIFIER ASSIGNMENT expression
+   11     | IDENTIFIER
+   12     | IDENTIFIER ASSIGNMENT expression
+
+   13 function: rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+
+   14 blockstmts: blockstmts blockstmt
+   15           | blockstmt
+
+   16 blockstmt: expression SEMICOLON
+   17          | typeline
+   18          | IF OBRACE expression EBRACE OCBRACE blockstmts ECBRACE
+   19          | RETURN expression SEMICOLON
+
+   20 rettype: TYPEAUTO
+   21        | TYPEINT
+   22        | TYPEFLOAT
+   23        | TYPECHAR
+   24        | TYPESTRING
+   25        | TYPEVOID
+
+   26 argsdefinition: argsdefinition COMMA IDENTIFIER
+   27               | argsdefinition COMMA IDENTIFIER ASSIGNMENT expression
+   28               | IDENTIFIER
+   29               | IDENTIFIER ASSIGNMENT expression
+   30               | %empty
+
+   31 argscall: argscall COMMA expression
+   32         | expression
+   33         | %empty
+
+   34 expression: IDENTIFIER ASSIGNMENT expression
+   35           | OBRACE expression EBRACE
+   36           | BITWISEINV expression
+   37           | expression POWER expression
+   38           | expression STAR expression
+   39           | expression DIVISION expression
+   40           | expression REMAINDER expression
+   41           | expression PLUS expression
+   42           | expression MINUS expression
+   43           | expression LEFTSHIFT expression
+   44           | expression RIGHTSHIFT expression
+   45           | expression BITWISEAND expression
+   46           | expression BITWISEXOR expression
+   47           | expression BITWISEOR expression
+   48           | expression LESSTHAN expression
+   49           | expression GREATERTHAN expression
+   50           | expression DOUBLEEQUAL expression
+   51           | expression NOTEQUAL expression
+   52           | expression LESSTHOREQ expression
+   53           | expression GREATTHOREQ expression
+   54           | NOT expression
+   55           | expression AND expression
+   56           | expression OR expression
+   57           | IDENTIFIER
+   58           | INT
+   59           | STRING
+   60           | CHAR
+   61           | FLOAT
+   62           | IDENTIFIER OBRACE argscall EBRACE
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+INT (258) 58
+FLOAT (259) 61
+STRING (260) 59
+CHAR (261) 60
+IDENTIFIER (262) 7 9 10 11 12 13 26 27 28 29 34 57 62
+SEMICOLON (263) 5 16 19
+TYPEINT (264) 21
+TYPEFLOAT (265) 22
+TYPECHAR (266) 23
+TYPESTRING (267) 24
+TYPEAUTO (268) 20
+TYPEVOID (269) 25
+RETURN (270) 19
+HASH (271) 7
+INCLUDE (272) 7
+OCBRACE (273) 13 18
+ECBRACE (274) 13 18
+IF (275) 18
+OBRACE (276) 13 18 35 62
+EBRACE (277) 13 18 35 62
+COMMA (278) 9 10 26 27 31
+ASSIGNMENT (279) 10 12 27 29 34
+OR (280) 56
+AND (281) 55
+NOT (282) 54
+LESSTHAN (283) 7 48
+GREATERTHAN (284) 7 49
+DOUBLEEQUAL (285) 50
+NOTEQUAL (286) 51
+LESSTHOREQ (287) 52
+GREATTHOREQ (288) 53
+BITWISEOR (289) 47
+BITWISEXOR (290) 46
+BITWISEAND (291) 45
+LEFTSHIFT (292) 43
+RIGHTSHIFT (293) 44
+PLUS (294) 41
+MINUS (295) 42
+STAR (296) 38
+DIVISION (297) 39
+REMAINDER (298) 40
+POWER (299) 37
+BITWISEINV (300) 36
+
+
+Nonterminals, with rules where they appear
+
+$accept (46)
+    on left: 0
+template (47)
+    on left: 1, on right: 0
+typelines (48)
+    on left: 2 3, on right: 1 2
+typeline (49)
+    on left: 4 5 6, on right: 2 3 17
+header (50)
+    on left: 7, on right: 4
+declaration (51)
+    on left: 8, on right: 5
+decl (52)
+    on left: 9 10 11 12, on right: 8 9 10
+function (53)
+    on left: 13, on right: 6
+blockstmts (54)
+    on left: 14 15, on right: 13 14 18
+blockstmt (55)
+    on left: 16 17 18 19, on right: 14 15
+rettype (56)
+    on left: 20 21 22 23 24 25, on right: 8 13
+argsdefinition (57)
+    on left: 26 27 28 29 30, on right: 13 26 27
+argscall (58)
+    on left: 31 32 33, on right: 31 62
+expression (59)
+    on left: 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
+    52 53 54 55 56 57 58 59 60 61 62, on right: 10 12 16 18 19 27 29
+    31 32 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52
+    53 54 55 56
+
+
+State 0
+
+    0 $accept: . template $end
+    1 template: . typelines
+    2 typelines: . typelines typeline
+    3          | . typeline
+    4 typeline: . header
+    5         | . declaration SEMICOLON
+    6         | . function
+    7 header: . HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+    8 declaration: . rettype decl
+   13 function: . rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+   20 rettype: . TYPEAUTO
+   21        | . TYPEINT
+   22        | . TYPEFLOAT
+   23        | . TYPECHAR
+   24        | . TYPESTRING
+   25        | . TYPEVOID
+
+    TYPEINT     shift, and go to state 1
+    TYPEFLOAT   shift, and go to state 2
+    TYPECHAR    shift, and go to state 3
+    TYPESTRING  shift, and go to state 4
+    TYPEAUTO    shift, and go to state 5
+    TYPEVOID    shift, and go to state 6
+    HASH        shift, and go to state 7
+
+    template     go to state 8
+    typelines    go to state 9
+    typeline     go to state 10
+    header       go to state 11
+    declaration  go to state 12
+    function     go to state 13
+    rettype      go to state 14
+
+
+State 1
+
+   21 rettype: TYPEINT .
+
+    $default  reduce using rule 21 (rettype)
+
+
+State 2
+
+   22 rettype: TYPEFLOAT .
+
+    $default  reduce using rule 22 (rettype)
+
+
+State 3
+
+   23 rettype: TYPECHAR .
+
+    $default  reduce using rule 23 (rettype)
+
+
+State 4
+
+   24 rettype: TYPESTRING .
+
+    $default  reduce using rule 24 (rettype)
+
+
+State 5
+
+   20 rettype: TYPEAUTO .
+
+    $default  reduce using rule 20 (rettype)
+
+
+State 6
+
+   25 rettype: TYPEVOID .
+
+    $default  reduce using rule 25 (rettype)
+
+
+State 7
+
+    7 header: HASH . INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+
+    INCLUDE  shift, and go to state 15
+
+
+State 8
+
+    0 $accept: template . $end
+
+    $end  shift, and go to state 16
+
+
+State 9
+
+    1 template: typelines .  [$end]
+    2 typelines: typelines . typeline
+    4 typeline: . header
+    5         | . declaration SEMICOLON
+    6         | . function
+    7 header: . HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+    8 declaration: . rettype decl
+   13 function: . rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+   20 rettype: . TYPEAUTO
+   21        | . TYPEINT
+   22        | . TYPEFLOAT
+   23        | . TYPECHAR
+   24        | . TYPESTRING
+   25        | . TYPEVOID
+
+    TYPEINT     shift, and go to state 1
+    TYPEFLOAT   shift, and go to state 2
+    TYPECHAR    shift, and go to state 3
+    TYPESTRING  shift, and go to state 4
+    TYPEAUTO    shift, and go to state 5
+    TYPEVOID    shift, and go to state 6
+    HASH        shift, and go to state 7
+
+    $default  reduce using rule 1 (template)
+
+    typeline     go to state 17
+    header       go to state 11
+    declaration  go to state 12
+    function     go to state 13
+    rettype      go to state 14
+
+
+State 10
+
+    3 typelines: typeline .
+
+    $default  reduce using rule 3 (typelines)
+
+
+State 11
+
+    4 typeline: header .
+
+    $default  reduce using rule 4 (typeline)
+
+
+State 12
+
+    5 typeline: declaration . SEMICOLON
+
+    SEMICOLON  shift, and go to state 18
+
+
+State 13
+
+    6 typeline: function .
+
+    $default  reduce using rule 6 (typeline)
+
+
+State 14
+
+    8 declaration: rettype . decl
+    9 decl: . decl COMMA IDENTIFIER
+   10     | . decl COMMA IDENTIFIER ASSIGNMENT expression
+   11     | . IDENTIFIER
+   12     | . IDENTIFIER ASSIGNMENT expression
+   13 function: rettype . IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+
+    IDENTIFIER  shift, and go to state 19
+
+    decl  go to state 20
+
+
+State 15
+
+    7 header: HASH INCLUDE . LESSTHAN IDENTIFIER GREATERTHAN
+
+    LESSTHAN  shift, and go to state 21
+
+
+State 16
+
+    0 $accept: template $end .
+
+    $default  accept
+
+
+State 17
+
+    2 typelines: typelines typeline .
+
+    $default  reduce using rule 2 (typelines)
+
+
+State 18
+
+    5 typeline: declaration SEMICOLON .
+
+    $default  reduce using rule 5 (typeline)
+
+
+State 19
+
+   11 decl: IDENTIFIER .  [SEMICOLON, COMMA]
+   12     | IDENTIFIER . ASSIGNMENT expression
+   13 function: rettype IDENTIFIER . OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+
+    OBRACE      shift, and go to state 22
+    ASSIGNMENT  shift, and go to state 23
+
+    $default  reduce using rule 11 (decl)
+
+
+State 20
+
+    8 declaration: rettype decl .  [SEMICOLON]
+    9 decl: decl . COMMA IDENTIFIER
+   10     | decl . COMMA IDENTIFIER ASSIGNMENT expression
+
+    COMMA  shift, and go to state 24
+
+    $default  reduce using rule 8 (declaration)
+
+
+State 21
+
+    7 header: HASH INCLUDE LESSTHAN . IDENTIFIER GREATERTHAN
+
+    IDENTIFIER  shift, and go to state 25
+
+
+State 22
+
+   13 function: rettype IDENTIFIER OBRACE . argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+   26 argsdefinition: . argsdefinition COMMA IDENTIFIER
+   27               | . argsdefinition COMMA IDENTIFIER ASSIGNMENT expression
+   28               | . IDENTIFIER
+   29               | . IDENTIFIER ASSIGNMENT expression
+   30               | . %empty  [EBRACE, COMMA]
+
+    IDENTIFIER  shift, and go to state 26
+
+    $default  reduce using rule 30 (argsdefinition)
+
+    argsdefinition  go to state 27
+
+
+State 23
+
+   12 decl: IDENTIFIER ASSIGNMENT . expression
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 36
+
+
+State 24
+
+    9 decl: decl COMMA . IDENTIFIER
+   10     | decl COMMA . IDENTIFIER ASSIGNMENT expression
+
+    IDENTIFIER  shift, and go to state 37
+
+
+State 25
+
+    7 header: HASH INCLUDE LESSTHAN IDENTIFIER . GREATERTHAN
+
+    GREATERTHAN  shift, and go to state 38
+
+
+State 26
+
+   28 argsdefinition: IDENTIFIER .  [EBRACE, COMMA]
+   29               | IDENTIFIER . ASSIGNMENT expression
+
+    ASSIGNMENT  shift, and go to state 39
+
+    $default  reduce using rule 28 (argsdefinition)
+
+
+State 27
+
+   13 function: rettype IDENTIFIER OBRACE argsdefinition . EBRACE OCBRACE blockstmts ECBRACE
+   26 argsdefinition: argsdefinition . COMMA IDENTIFIER
+   27               | argsdefinition . COMMA IDENTIFIER ASSIGNMENT expression
+
+    EBRACE  shift, and go to state 40
+    COMMA   shift, and go to state 41
+
+
+State 28
+
+   58 expression: INT .
+
+    $default  reduce using rule 58 (expression)
+
+
+State 29
+
+   61 expression: FLOAT .
+
+    $default  reduce using rule 61 (expression)
+
+
+State 30
+
+   59 expression: STRING .
+
+    $default  reduce using rule 59 (expression)
+
+
+State 31
+
+   60 expression: CHAR .
+
+    $default  reduce using rule 60 (expression)
+
+
+State 32
+
+   34 expression: IDENTIFIER . ASSIGNMENT expression
+   57           | IDENTIFIER .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS, STAR, DIVISION, REMAINDER, POWER]
+   62           | IDENTIFIER . OBRACE argscall EBRACE
+
+    OBRACE      shift, and go to state 42
+    ASSIGNMENT  shift, and go to state 43
+
+    $default  reduce using rule 57 (expression)
+
+
+State 33
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   35           | OBRACE . expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 44
+
+
+State 34
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   54           | NOT . expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 45
+
+
+State 35
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   36           | BITWISEINV . expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 46
+
+
+State 36
+
+   12 decl: IDENTIFIER ASSIGNMENT expression .  [SEMICOLON, COMMA]
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 12 (decl)
+
+
+State 37
+
+    9 decl: decl COMMA IDENTIFIER .  [SEMICOLON, COMMA]
+   10     | decl COMMA IDENTIFIER . ASSIGNMENT expression
+
+    ASSIGNMENT  shift, and go to state 66
+
+    $default  reduce using rule 9 (decl)
+
+
+State 38
+
+    7 header: HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN .
+
+    $default  reduce using rule 7 (header)
+
+
+State 39
+
+   29 argsdefinition: IDENTIFIER ASSIGNMENT . expression
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 67
+
+
+State 40
+
+   13 function: rettype IDENTIFIER OBRACE argsdefinition EBRACE . OCBRACE blockstmts ECBRACE
+
+    OCBRACE  shift, and go to state 68
+
+
+State 41
+
+   26 argsdefinition: argsdefinition COMMA . IDENTIFIER
+   27               | argsdefinition COMMA . IDENTIFIER ASSIGNMENT expression
+
+    IDENTIFIER  shift, and go to state 69
+
+
+State 42
+
+   31 argscall: . argscall COMMA expression
+   32         | . expression
+   33         | . %empty  [EBRACE, COMMA]
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+   62           | IDENTIFIER OBRACE . argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    $default  reduce using rule 33 (argscall)
+
+    argscall    go to state 70
+    expression  go to state 71
+
+
+State 43
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   34           | IDENTIFIER ASSIGNMENT . expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 72
+
+
+State 44
+
+   35 expression: OBRACE expression . EBRACE
+   37           | expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    EBRACE       shift, and go to state 73
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+
+State 45
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   54           | NOT expression .  [SEMICOLON, EBRACE, COMMA, OR, AND]
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 54 (expression)
+
+    Conflict between rule 54 and token OR resolved as reduce (OR < NOT).
+    Conflict between rule 54 and token AND resolved as reduce (AND < NOT).
+    Conflict between rule 54 and token LESSTHAN resolved as shift (NOT < LESSTHAN).
+    Conflict between rule 54 and token GREATERTHAN resolved as shift (NOT < GREATERTHAN).
+    Conflict between rule 54 and token DOUBLEEQUAL resolved as shift (NOT < DOUBLEEQUAL).
+    Conflict between rule 54 and token NOTEQUAL resolved as shift (NOT < NOTEQUAL).
+    Conflict between rule 54 and token LESSTHOREQ resolved as shift (NOT < LESSTHOREQ).
+    Conflict between rule 54 and token GREATTHOREQ resolved as shift (NOT < GREATTHOREQ).
+    Conflict between rule 54 and token BITWISEOR resolved as shift (NOT < BITWISEOR).
+    Conflict between rule 54 and token BITWISEXOR resolved as shift (NOT < BITWISEXOR).
+    Conflict between rule 54 and token BITWISEAND resolved as shift (NOT < BITWISEAND).
+    Conflict between rule 54 and token LEFTSHIFT resolved as shift (NOT < LEFTSHIFT).
+    Conflict between rule 54 and token RIGHTSHIFT resolved as shift (NOT < RIGHTSHIFT).
+    Conflict between rule 54 and token PLUS resolved as shift (NOT < PLUS).
+    Conflict between rule 54 and token MINUS resolved as shift (NOT < MINUS).
+    Conflict between rule 54 and token STAR resolved as shift (NOT < STAR).
+    Conflict between rule 54 and token DIVISION resolved as shift (NOT < DIVISION).
+    Conflict between rule 54 and token REMAINDER resolved as shift (NOT < REMAINDER).
+    Conflict between rule 54 and token POWER resolved as shift (NOT < POWER).
+
+
+State 46
+
+   36 expression: BITWISEINV expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS, STAR, DIVISION, REMAINDER, POWER]
+   37           | expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    $default  reduce using rule 36 (expression)
+
+    Conflict between rule 36 and token OR resolved as reduce (OR < BITWISEINV).
+    Conflict between rule 36 and token AND resolved as reduce (AND < BITWISEINV).
+    Conflict between rule 36 and token LESSTHAN resolved as reduce (LESSTHAN < BITWISEINV).
+    Conflict between rule 36 and token GREATERTHAN resolved as reduce (GREATERTHAN < BITWISEINV).
+    Conflict between rule 36 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < BITWISEINV).
+    Conflict between rule 36 and token NOTEQUAL resolved as reduce (NOTEQUAL < BITWISEINV).
+    Conflict between rule 36 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < BITWISEINV).
+    Conflict between rule 36 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < BITWISEINV).
+    Conflict between rule 36 and token BITWISEOR resolved as reduce (BITWISEOR < BITWISEINV).
+    Conflict between rule 36 and token BITWISEXOR resolved as reduce (BITWISEXOR < BITWISEINV).
+    Conflict between rule 36 and token BITWISEAND resolved as reduce (BITWISEAND < BITWISEINV).
+    Conflict between rule 36 and token LEFTSHIFT resolved as reduce (LEFTSHIFT < BITWISEINV).
+    Conflict between rule 36 and token RIGHTSHIFT resolved as reduce (RIGHTSHIFT < BITWISEINV).
+    Conflict between rule 36 and token PLUS resolved as reduce (PLUS < BITWISEINV).
+    Conflict between rule 36 and token MINUS resolved as reduce (MINUS < BITWISEINV).
+    Conflict between rule 36 and token STAR resolved as reduce (STAR < BITWISEINV).
+    Conflict between rule 36 and token DIVISION resolved as reduce (DIVISION < BITWISEINV).
+    Conflict between rule 36 and token REMAINDER resolved as reduce (REMAINDER < BITWISEINV).
+    Conflict between rule 36 and token POWER resolved as reduce (POWER < BITWISEINV).
+
+
+State 47
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   56           | expression OR . expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 74
+
+
+State 48
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   55           | expression AND . expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 75
+
+
+State 49
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   48           | expression LESSTHAN . expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 76
+
+
+State 50
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   49           | expression GREATERTHAN . expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 77
+
+
+State 51
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   50           | expression DOUBLEEQUAL . expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 78
+
+
+State 52
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   51           | expression NOTEQUAL . expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 79
+
+
+State 53
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   52           | expression LESSTHOREQ . expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 80
+
+
+State 54
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   53           | expression GREATTHOREQ . expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 81
+
+
+State 55
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   47           | expression BITWISEOR . expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 82
+
+
+State 56
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   46           | expression BITWISEXOR . expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 83
+
+
+State 57
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   45           | expression BITWISEAND . expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 84
+
+
+State 58
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   43           | expression LEFTSHIFT . expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 85
+
+
+State 59
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   44           | expression RIGHTSHIFT . expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 86
+
+
+State 60
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   41           | expression PLUS . expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 87
+
+
+State 61
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   42           | expression MINUS . expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 88
+
+
+State 62
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   38           | expression STAR . expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 89
+
+
+State 63
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   39           | expression DIVISION . expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 90
+
+
+State 64
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   40           | expression REMAINDER . expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 91
+
+
+State 65
+
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   37           | expression POWER . expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 92
+
+
+State 66
+
+   10 decl: decl COMMA IDENTIFIER ASSIGNMENT . expression
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 93
+
+
+State 67
+
+   29 argsdefinition: IDENTIFIER ASSIGNMENT expression .  [EBRACE, COMMA]
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 29 (argsdefinition)
+
+
+State 68
+
+    4 typeline: . header
+    5         | . declaration SEMICOLON
+    6         | . function
+    7 header: . HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+    8 declaration: . rettype decl
+   13 function: . rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+   13         | rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE . blockstmts ECBRACE
+   14 blockstmts: . blockstmts blockstmt
+   15           | . blockstmt
+   16 blockstmt: . expression SEMICOLON
+   17          | . typeline
+   18          | . IF OBRACE expression EBRACE OCBRACE blockstmts ECBRACE
+   19          | . RETURN expression SEMICOLON
+   20 rettype: . TYPEAUTO
+   21        | . TYPEINT
+   22        | . TYPEFLOAT
+   23        | . TYPECHAR
+   24        | . TYPESTRING
+   25        | . TYPEVOID
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    TYPEINT     shift, and go to state 1
+    TYPEFLOAT   shift, and go to state 2
+    TYPECHAR    shift, and go to state 3
+    TYPESTRING  shift, and go to state 4
+    TYPEAUTO    shift, and go to state 5
+    TYPEVOID    shift, and go to state 6
+    RETURN      shift, and go to state 94
+    HASH        shift, and go to state 7
+    IF          shift, and go to state 95
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    typeline     go to state 96
+    header       go to state 11
+    declaration  go to state 12
+    function     go to state 13
+    blockstmts   go to state 97
+    blockstmt    go to state 98
+    rettype      go to state 14
+    expression   go to state 99
+
+
+State 69
+
+   26 argsdefinition: argsdefinition COMMA IDENTIFIER .  [EBRACE, COMMA]
+   27               | argsdefinition COMMA IDENTIFIER . ASSIGNMENT expression
+
+    ASSIGNMENT  shift, and go to state 100
+
+    $default  reduce using rule 26 (argsdefinition)
+
+
+State 70
+
+   31 argscall: argscall . COMMA expression
+   62 expression: IDENTIFIER OBRACE argscall . EBRACE
+
+    EBRACE  shift, and go to state 101
+    COMMA   shift, and go to state 102
+
+
+State 71
+
+   32 argscall: expression .  [EBRACE, COMMA]
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 32 (argscall)
+
+
+State 72
+
+   34 expression: IDENTIFIER ASSIGNMENT expression .  [SEMICOLON, EBRACE, COMMA]
+   37           | expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 34 (expression)
+
+    Conflict between rule 34 and token OR resolved as shift (ASSIGNMENT < OR).
+    Conflict between rule 34 and token AND resolved as shift (ASSIGNMENT < AND).
+    Conflict between rule 34 and token LESSTHAN resolved as shift (ASSIGNMENT < LESSTHAN).
+    Conflict between rule 34 and token GREATERTHAN resolved as shift (ASSIGNMENT < GREATERTHAN).
+    Conflict between rule 34 and token DOUBLEEQUAL resolved as shift (ASSIGNMENT < DOUBLEEQUAL).
+    Conflict between rule 34 and token NOTEQUAL resolved as shift (ASSIGNMENT < NOTEQUAL).
+    Conflict between rule 34 and token LESSTHOREQ resolved as shift (ASSIGNMENT < LESSTHOREQ).
+    Conflict between rule 34 and token GREATTHOREQ resolved as shift (ASSIGNMENT < GREATTHOREQ).
+    Conflict between rule 34 and token BITWISEOR resolved as shift (ASSIGNMENT < BITWISEOR).
+    Conflict between rule 34 and token BITWISEXOR resolved as shift (ASSIGNMENT < BITWISEXOR).
+    Conflict between rule 34 and token BITWISEAND resolved as shift (ASSIGNMENT < BITWISEAND).
+    Conflict between rule 34 and token LEFTSHIFT resolved as shift (ASSIGNMENT < LEFTSHIFT).
+    Conflict between rule 34 and token RIGHTSHIFT resolved as shift (ASSIGNMENT < RIGHTSHIFT).
+    Conflict between rule 34 and token PLUS resolved as shift (ASSIGNMENT < PLUS).
+    Conflict between rule 34 and token MINUS resolved as shift (ASSIGNMENT < MINUS).
+    Conflict between rule 34 and token STAR resolved as shift (ASSIGNMENT < STAR).
+    Conflict between rule 34 and token DIVISION resolved as shift (ASSIGNMENT < DIVISION).
+    Conflict between rule 34 and token REMAINDER resolved as shift (ASSIGNMENT < REMAINDER).
+    Conflict between rule 34 and token POWER resolved as shift (ASSIGNMENT < POWER).
+
+
+State 73
+
+   35 expression: OBRACE expression EBRACE .
+
+    $default  reduce using rule 35 (expression)
+
+
+State 74
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+   56           | expression OR expression .  [SEMICOLON, EBRACE, COMMA, OR]
+
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 56 (expression)
+
+    Conflict between rule 56 and token OR resolved as reduce (%left OR).
+    Conflict between rule 56 and token AND resolved as shift (OR < AND).
+    Conflict between rule 56 and token LESSTHAN resolved as shift (OR < LESSTHAN).
+    Conflict between rule 56 and token GREATERTHAN resolved as shift (OR < GREATERTHAN).
+    Conflict between rule 56 and token DOUBLEEQUAL resolved as shift (OR < DOUBLEEQUAL).
+    Conflict between rule 56 and token NOTEQUAL resolved as shift (OR < NOTEQUAL).
+    Conflict between rule 56 and token LESSTHOREQ resolved as shift (OR < LESSTHOREQ).
+    Conflict between rule 56 and token GREATTHOREQ resolved as shift (OR < GREATTHOREQ).
+    Conflict between rule 56 and token BITWISEOR resolved as shift (OR < BITWISEOR).
+    Conflict between rule 56 and token BITWISEXOR resolved as shift (OR < BITWISEXOR).
+    Conflict between rule 56 and token BITWISEAND resolved as shift (OR < BITWISEAND).
+    Conflict between rule 56 and token LEFTSHIFT resolved as shift (OR < LEFTSHIFT).
+    Conflict between rule 56 and token RIGHTSHIFT resolved as shift (OR < RIGHTSHIFT).
+    Conflict between rule 56 and token PLUS resolved as shift (OR < PLUS).
+    Conflict between rule 56 and token MINUS resolved as shift (OR < MINUS).
+    Conflict between rule 56 and token STAR resolved as shift (OR < STAR).
+    Conflict between rule 56 and token DIVISION resolved as shift (OR < DIVISION).
+    Conflict between rule 56 and token REMAINDER resolved as shift (OR < REMAINDER).
+    Conflict between rule 56 and token POWER resolved as shift (OR < POWER).
+
+
+State 75
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   55           | expression AND expression .  [SEMICOLON, EBRACE, COMMA, OR, AND]
+   56           | expression . OR expression
+
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 55 (expression)
+
+    Conflict between rule 55 and token OR resolved as reduce (OR < AND).
+    Conflict between rule 55 and token AND resolved as reduce (%left AND).
+    Conflict between rule 55 and token LESSTHAN resolved as shift (AND < LESSTHAN).
+    Conflict between rule 55 and token GREATERTHAN resolved as shift (AND < GREATERTHAN).
+    Conflict between rule 55 and token DOUBLEEQUAL resolved as shift (AND < DOUBLEEQUAL).
+    Conflict between rule 55 and token NOTEQUAL resolved as shift (AND < NOTEQUAL).
+    Conflict between rule 55 and token LESSTHOREQ resolved as shift (AND < LESSTHOREQ).
+    Conflict between rule 55 and token GREATTHOREQ resolved as shift (AND < GREATTHOREQ).
+    Conflict between rule 55 and token BITWISEOR resolved as shift (AND < BITWISEOR).
+    Conflict between rule 55 and token BITWISEXOR resolved as shift (AND < BITWISEXOR).
+    Conflict between rule 55 and token BITWISEAND resolved as shift (AND < BITWISEAND).
+    Conflict between rule 55 and token LEFTSHIFT resolved as shift (AND < LEFTSHIFT).
+    Conflict between rule 55 and token RIGHTSHIFT resolved as shift (AND < RIGHTSHIFT).
+    Conflict between rule 55 and token PLUS resolved as shift (AND < PLUS).
+    Conflict between rule 55 and token MINUS resolved as shift (AND < MINUS).
+    Conflict between rule 55 and token STAR resolved as shift (AND < STAR).
+    Conflict between rule 55 and token DIVISION resolved as shift (AND < DIVISION).
+    Conflict between rule 55 and token REMAINDER resolved as shift (AND < REMAINDER).
+    Conflict between rule 55 and token POWER resolved as shift (AND < POWER).
+
+
+State 76
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   48           | expression LESSTHAN expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ]
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEOR   shift, and go to state 55
+    BITWISEXOR  shift, and go to state 56
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 48 (expression)
+
+    Conflict between rule 48 and token OR resolved as reduce (OR < LESSTHAN).
+    Conflict between rule 48 and token AND resolved as reduce (AND < LESSTHAN).
+    Conflict between rule 48 and token LESSTHAN resolved as reduce (%left LESSTHAN).
+    Conflict between rule 48 and token GREATERTHAN resolved as reduce (%left GREATERTHAN).
+    Conflict between rule 48 and token DOUBLEEQUAL resolved as reduce (%left DOUBLEEQUAL).
+    Conflict between rule 48 and token NOTEQUAL resolved as reduce (%left NOTEQUAL).
+    Conflict between rule 48 and token LESSTHOREQ resolved as reduce (%left LESSTHOREQ).
+    Conflict between rule 48 and token GREATTHOREQ resolved as reduce (%left GREATTHOREQ).
+    Conflict between rule 48 and token BITWISEOR resolved as shift (LESSTHAN < BITWISEOR).
+    Conflict between rule 48 and token BITWISEXOR resolved as shift (LESSTHAN < BITWISEXOR).
+    Conflict between rule 48 and token BITWISEAND resolved as shift (LESSTHAN < BITWISEAND).
+    Conflict between rule 48 and token LEFTSHIFT resolved as shift (LESSTHAN < LEFTSHIFT).
+    Conflict between rule 48 and token RIGHTSHIFT resolved as shift (LESSTHAN < RIGHTSHIFT).
+    Conflict between rule 48 and token PLUS resolved as shift (LESSTHAN < PLUS).
+    Conflict between rule 48 and token MINUS resolved as shift (LESSTHAN < MINUS).
+    Conflict between rule 48 and token STAR resolved as shift (LESSTHAN < STAR).
+    Conflict between rule 48 and token DIVISION resolved as shift (LESSTHAN < DIVISION).
+    Conflict between rule 48 and token REMAINDER resolved as shift (LESSTHAN < REMAINDER).
+    Conflict between rule 48 and token POWER resolved as shift (LESSTHAN < POWER).
+
+
+State 77
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   49           | expression GREATERTHAN expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ]
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEOR   shift, and go to state 55
+    BITWISEXOR  shift, and go to state 56
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 49 (expression)
+
+    Conflict between rule 49 and token OR resolved as reduce (OR < GREATERTHAN).
+    Conflict between rule 49 and token AND resolved as reduce (AND < GREATERTHAN).
+    Conflict between rule 49 and token LESSTHAN resolved as reduce (%left LESSTHAN).
+    Conflict between rule 49 and token GREATERTHAN resolved as reduce (%left GREATERTHAN).
+    Conflict between rule 49 and token DOUBLEEQUAL resolved as reduce (%left DOUBLEEQUAL).
+    Conflict between rule 49 and token NOTEQUAL resolved as reduce (%left NOTEQUAL).
+    Conflict between rule 49 and token LESSTHOREQ resolved as reduce (%left LESSTHOREQ).
+    Conflict between rule 49 and token GREATTHOREQ resolved as reduce (%left GREATTHOREQ).
+    Conflict between rule 49 and token BITWISEOR resolved as shift (GREATERTHAN < BITWISEOR).
+    Conflict between rule 49 and token BITWISEXOR resolved as shift (GREATERTHAN < BITWISEXOR).
+    Conflict between rule 49 and token BITWISEAND resolved as shift (GREATERTHAN < BITWISEAND).
+    Conflict between rule 49 and token LEFTSHIFT resolved as shift (GREATERTHAN < LEFTSHIFT).
+    Conflict between rule 49 and token RIGHTSHIFT resolved as shift (GREATERTHAN < RIGHTSHIFT).
+    Conflict between rule 49 and token PLUS resolved as shift (GREATERTHAN < PLUS).
+    Conflict between rule 49 and token MINUS resolved as shift (GREATERTHAN < MINUS).
+    Conflict between rule 49 and token STAR resolved as shift (GREATERTHAN < STAR).
+    Conflict between rule 49 and token DIVISION resolved as shift (GREATERTHAN < DIVISION).
+    Conflict between rule 49 and token REMAINDER resolved as shift (GREATERTHAN < REMAINDER).
+    Conflict between rule 49 and token POWER resolved as shift (GREATERTHAN < POWER).
+
+
+State 78
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   50           | expression DOUBLEEQUAL expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ]
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEOR   shift, and go to state 55
+    BITWISEXOR  shift, and go to state 56
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 50 (expression)
+
+    Conflict between rule 50 and token OR resolved as reduce (OR < DOUBLEEQUAL).
+    Conflict between rule 50 and token AND resolved as reduce (AND < DOUBLEEQUAL).
+    Conflict between rule 50 and token LESSTHAN resolved as reduce (%left LESSTHAN).
+    Conflict between rule 50 and token GREATERTHAN resolved as reduce (%left GREATERTHAN).
+    Conflict between rule 50 and token DOUBLEEQUAL resolved as reduce (%left DOUBLEEQUAL).
+    Conflict between rule 50 and token NOTEQUAL resolved as reduce (%left NOTEQUAL).
+    Conflict between rule 50 and token LESSTHOREQ resolved as reduce (%left LESSTHOREQ).
+    Conflict between rule 50 and token GREATTHOREQ resolved as reduce (%left GREATTHOREQ).
+    Conflict between rule 50 and token BITWISEOR resolved as shift (DOUBLEEQUAL < BITWISEOR).
+    Conflict between rule 50 and token BITWISEXOR resolved as shift (DOUBLEEQUAL < BITWISEXOR).
+    Conflict between rule 50 and token BITWISEAND resolved as shift (DOUBLEEQUAL < BITWISEAND).
+    Conflict between rule 50 and token LEFTSHIFT resolved as shift (DOUBLEEQUAL < LEFTSHIFT).
+    Conflict between rule 50 and token RIGHTSHIFT resolved as shift (DOUBLEEQUAL < RIGHTSHIFT).
+    Conflict between rule 50 and token PLUS resolved as shift (DOUBLEEQUAL < PLUS).
+    Conflict between rule 50 and token MINUS resolved as shift (DOUBLEEQUAL < MINUS).
+    Conflict between rule 50 and token STAR resolved as shift (DOUBLEEQUAL < STAR).
+    Conflict between rule 50 and token DIVISION resolved as shift (DOUBLEEQUAL < DIVISION).
+    Conflict between rule 50 and token REMAINDER resolved as shift (DOUBLEEQUAL < REMAINDER).
+    Conflict between rule 50 and token POWER resolved as shift (DOUBLEEQUAL < POWER).
+
+
+State 79
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   51           | expression NOTEQUAL expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ]
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEOR   shift, and go to state 55
+    BITWISEXOR  shift, and go to state 56
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 51 (expression)
+
+    Conflict between rule 51 and token OR resolved as reduce (OR < NOTEQUAL).
+    Conflict between rule 51 and token AND resolved as reduce (AND < NOTEQUAL).
+    Conflict between rule 51 and token LESSTHAN resolved as reduce (%left LESSTHAN).
+    Conflict between rule 51 and token GREATERTHAN resolved as reduce (%left GREATERTHAN).
+    Conflict between rule 51 and token DOUBLEEQUAL resolved as reduce (%left DOUBLEEQUAL).
+    Conflict between rule 51 and token NOTEQUAL resolved as reduce (%left NOTEQUAL).
+    Conflict between rule 51 and token LESSTHOREQ resolved as reduce (%left LESSTHOREQ).
+    Conflict between rule 51 and token GREATTHOREQ resolved as reduce (%left GREATTHOREQ).
+    Conflict between rule 51 and token BITWISEOR resolved as shift (NOTEQUAL < BITWISEOR).
+    Conflict between rule 51 and token BITWISEXOR resolved as shift (NOTEQUAL < BITWISEXOR).
+    Conflict between rule 51 and token BITWISEAND resolved as shift (NOTEQUAL < BITWISEAND).
+    Conflict between rule 51 and token LEFTSHIFT resolved as shift (NOTEQUAL < LEFTSHIFT).
+    Conflict between rule 51 and token RIGHTSHIFT resolved as shift (NOTEQUAL < RIGHTSHIFT).
+    Conflict between rule 51 and token PLUS resolved as shift (NOTEQUAL < PLUS).
+    Conflict between rule 51 and token MINUS resolved as shift (NOTEQUAL < MINUS).
+    Conflict between rule 51 and token STAR resolved as shift (NOTEQUAL < STAR).
+    Conflict between rule 51 and token DIVISION resolved as shift (NOTEQUAL < DIVISION).
+    Conflict between rule 51 and token REMAINDER resolved as shift (NOTEQUAL < REMAINDER).
+    Conflict between rule 51 and token POWER resolved as shift (NOTEQUAL < POWER).
+
+
+State 80
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   52           | expression LESSTHOREQ expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ]
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEOR   shift, and go to state 55
+    BITWISEXOR  shift, and go to state 56
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 52 (expression)
+
+    Conflict between rule 52 and token OR resolved as reduce (OR < LESSTHOREQ).
+    Conflict between rule 52 and token AND resolved as reduce (AND < LESSTHOREQ).
+    Conflict between rule 52 and token LESSTHAN resolved as reduce (%left LESSTHAN).
+    Conflict between rule 52 and token GREATERTHAN resolved as reduce (%left GREATERTHAN).
+    Conflict between rule 52 and token DOUBLEEQUAL resolved as reduce (%left DOUBLEEQUAL).
+    Conflict between rule 52 and token NOTEQUAL resolved as reduce (%left NOTEQUAL).
+    Conflict between rule 52 and token LESSTHOREQ resolved as reduce (%left LESSTHOREQ).
+    Conflict between rule 52 and token GREATTHOREQ resolved as reduce (%left GREATTHOREQ).
+    Conflict between rule 52 and token BITWISEOR resolved as shift (LESSTHOREQ < BITWISEOR).
+    Conflict between rule 52 and token BITWISEXOR resolved as shift (LESSTHOREQ < BITWISEXOR).
+    Conflict between rule 52 and token BITWISEAND resolved as shift (LESSTHOREQ < BITWISEAND).
+    Conflict between rule 52 and token LEFTSHIFT resolved as shift (LESSTHOREQ < LEFTSHIFT).
+    Conflict between rule 52 and token RIGHTSHIFT resolved as shift (LESSTHOREQ < RIGHTSHIFT).
+    Conflict between rule 52 and token PLUS resolved as shift (LESSTHOREQ < PLUS).
+    Conflict between rule 52 and token MINUS resolved as shift (LESSTHOREQ < MINUS).
+    Conflict between rule 52 and token STAR resolved as shift (LESSTHOREQ < STAR).
+    Conflict between rule 52 and token DIVISION resolved as shift (LESSTHOREQ < DIVISION).
+    Conflict between rule 52 and token REMAINDER resolved as shift (LESSTHOREQ < REMAINDER).
+    Conflict between rule 52 and token POWER resolved as shift (LESSTHOREQ < POWER).
+
+
+State 81
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   53           | expression GREATTHOREQ expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ]
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEOR   shift, and go to state 55
+    BITWISEXOR  shift, and go to state 56
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 53 (expression)
+
+    Conflict between rule 53 and token OR resolved as reduce (OR < GREATTHOREQ).
+    Conflict between rule 53 and token AND resolved as reduce (AND < GREATTHOREQ).
+    Conflict between rule 53 and token LESSTHAN resolved as reduce (%left LESSTHAN).
+    Conflict between rule 53 and token GREATERTHAN resolved as reduce (%left GREATERTHAN).
+    Conflict between rule 53 and token DOUBLEEQUAL resolved as reduce (%left DOUBLEEQUAL).
+    Conflict between rule 53 and token NOTEQUAL resolved as reduce (%left NOTEQUAL).
+    Conflict between rule 53 and token LESSTHOREQ resolved as reduce (%left LESSTHOREQ).
+    Conflict between rule 53 and token GREATTHOREQ resolved as reduce (%left GREATTHOREQ).
+    Conflict between rule 53 and token BITWISEOR resolved as shift (GREATTHOREQ < BITWISEOR).
+    Conflict between rule 53 and token BITWISEXOR resolved as shift (GREATTHOREQ < BITWISEXOR).
+    Conflict between rule 53 and token BITWISEAND resolved as shift (GREATTHOREQ < BITWISEAND).
+    Conflict between rule 53 and token LEFTSHIFT resolved as shift (GREATTHOREQ < LEFTSHIFT).
+    Conflict between rule 53 and token RIGHTSHIFT resolved as shift (GREATTHOREQ < RIGHTSHIFT).
+    Conflict between rule 53 and token PLUS resolved as shift (GREATTHOREQ < PLUS).
+    Conflict between rule 53 and token MINUS resolved as shift (GREATTHOREQ < MINUS).
+    Conflict between rule 53 and token STAR resolved as shift (GREATTHOREQ < STAR).
+    Conflict between rule 53 and token DIVISION resolved as shift (GREATTHOREQ < DIVISION).
+    Conflict between rule 53 and token REMAINDER resolved as shift (GREATTHOREQ < REMAINDER).
+    Conflict between rule 53 and token POWER resolved as shift (GREATTHOREQ < POWER).
+
+
+State 82
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   47           | expression BITWISEOR expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR]
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEXOR  shift, and go to state 56
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 47 (expression)
+
+    Conflict between rule 47 and token OR resolved as reduce (OR < BITWISEOR).
+    Conflict between rule 47 and token AND resolved as reduce (AND < BITWISEOR).
+    Conflict between rule 47 and token LESSTHAN resolved as reduce (LESSTHAN < BITWISEOR).
+    Conflict between rule 47 and token GREATERTHAN resolved as reduce (GREATERTHAN < BITWISEOR).
+    Conflict between rule 47 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < BITWISEOR).
+    Conflict between rule 47 and token NOTEQUAL resolved as reduce (NOTEQUAL < BITWISEOR).
+    Conflict between rule 47 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < BITWISEOR).
+    Conflict between rule 47 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < BITWISEOR).
+    Conflict between rule 47 and token BITWISEOR resolved as reduce (%left BITWISEOR).
+    Conflict between rule 47 and token BITWISEXOR resolved as shift (BITWISEOR < BITWISEXOR).
+    Conflict between rule 47 and token BITWISEAND resolved as shift (BITWISEOR < BITWISEAND).
+    Conflict between rule 47 and token LEFTSHIFT resolved as shift (BITWISEOR < LEFTSHIFT).
+    Conflict between rule 47 and token RIGHTSHIFT resolved as shift (BITWISEOR < RIGHTSHIFT).
+    Conflict between rule 47 and token PLUS resolved as shift (BITWISEOR < PLUS).
+    Conflict between rule 47 and token MINUS resolved as shift (BITWISEOR < MINUS).
+    Conflict between rule 47 and token STAR resolved as shift (BITWISEOR < STAR).
+    Conflict between rule 47 and token DIVISION resolved as shift (BITWISEOR < DIVISION).
+    Conflict between rule 47 and token REMAINDER resolved as shift (BITWISEOR < REMAINDER).
+    Conflict between rule 47 and token POWER resolved as shift (BITWISEOR < POWER).
+
+
+State 83
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   46           | expression BITWISEXOR expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR]
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    BITWISEAND  shift, and go to state 57
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 46 (expression)
+
+    Conflict between rule 46 and token OR resolved as reduce (OR < BITWISEXOR).
+    Conflict between rule 46 and token AND resolved as reduce (AND < BITWISEXOR).
+    Conflict between rule 46 and token LESSTHAN resolved as reduce (LESSTHAN < BITWISEXOR).
+    Conflict between rule 46 and token GREATERTHAN resolved as reduce (GREATERTHAN < BITWISEXOR).
+    Conflict between rule 46 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < BITWISEXOR).
+    Conflict between rule 46 and token NOTEQUAL resolved as reduce (NOTEQUAL < BITWISEXOR).
+    Conflict between rule 46 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < BITWISEXOR).
+    Conflict between rule 46 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < BITWISEXOR).
+    Conflict between rule 46 and token BITWISEOR resolved as reduce (BITWISEOR < BITWISEXOR).
+    Conflict between rule 46 and token BITWISEXOR resolved as reduce (%left BITWISEXOR).
+    Conflict between rule 46 and token BITWISEAND resolved as shift (BITWISEXOR < BITWISEAND).
+    Conflict between rule 46 and token LEFTSHIFT resolved as shift (BITWISEXOR < LEFTSHIFT).
+    Conflict between rule 46 and token RIGHTSHIFT resolved as shift (BITWISEXOR < RIGHTSHIFT).
+    Conflict between rule 46 and token PLUS resolved as shift (BITWISEXOR < PLUS).
+    Conflict between rule 46 and token MINUS resolved as shift (BITWISEXOR < MINUS).
+    Conflict between rule 46 and token STAR resolved as shift (BITWISEXOR < STAR).
+    Conflict between rule 46 and token DIVISION resolved as shift (BITWISEXOR < DIVISION).
+    Conflict between rule 46 and token REMAINDER resolved as shift (BITWISEXOR < REMAINDER).
+    Conflict between rule 46 and token POWER resolved as shift (BITWISEXOR < POWER).
+
+
+State 84
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   45           | expression BITWISEAND expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND]
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    LEFTSHIFT   shift, and go to state 58
+    RIGHTSHIFT  shift, and go to state 59
+    PLUS        shift, and go to state 60
+    MINUS       shift, and go to state 61
+    STAR        shift, and go to state 62
+    DIVISION    shift, and go to state 63
+    REMAINDER   shift, and go to state 64
+    POWER       shift, and go to state 65
+
+    $default  reduce using rule 45 (expression)
+
+    Conflict between rule 45 and token OR resolved as reduce (OR < BITWISEAND).
+    Conflict between rule 45 and token AND resolved as reduce (AND < BITWISEAND).
+    Conflict between rule 45 and token LESSTHAN resolved as reduce (LESSTHAN < BITWISEAND).
+    Conflict between rule 45 and token GREATERTHAN resolved as reduce (GREATERTHAN < BITWISEAND).
+    Conflict between rule 45 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < BITWISEAND).
+    Conflict between rule 45 and token NOTEQUAL resolved as reduce (NOTEQUAL < BITWISEAND).
+    Conflict between rule 45 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < BITWISEAND).
+    Conflict between rule 45 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < BITWISEAND).
+    Conflict between rule 45 and token BITWISEOR resolved as reduce (BITWISEOR < BITWISEAND).
+    Conflict between rule 45 and token BITWISEXOR resolved as reduce (BITWISEXOR < BITWISEAND).
+    Conflict between rule 45 and token BITWISEAND resolved as reduce (%left BITWISEAND).
+    Conflict between rule 45 and token LEFTSHIFT resolved as shift (BITWISEAND < LEFTSHIFT).
+    Conflict between rule 45 and token RIGHTSHIFT resolved as shift (BITWISEAND < RIGHTSHIFT).
+    Conflict between rule 45 and token PLUS resolved as shift (BITWISEAND < PLUS).
+    Conflict between rule 45 and token MINUS resolved as shift (BITWISEAND < MINUS).
+    Conflict between rule 45 and token STAR resolved as shift (BITWISEAND < STAR).
+    Conflict between rule 45 and token DIVISION resolved as shift (BITWISEAND < DIVISION).
+    Conflict between rule 45 and token REMAINDER resolved as shift (BITWISEAND < REMAINDER).
+    Conflict between rule 45 and token POWER resolved as shift (BITWISEAND < POWER).
+
+
+State 85
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   43           | expression LEFTSHIFT expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT]
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    PLUS       shift, and go to state 60
+    MINUS      shift, and go to state 61
+    STAR       shift, and go to state 62
+    DIVISION   shift, and go to state 63
+    REMAINDER  shift, and go to state 64
+    POWER      shift, and go to state 65
+
+    $default  reduce using rule 43 (expression)
+
+    Conflict between rule 43 and token OR resolved as reduce (OR < LEFTSHIFT).
+    Conflict between rule 43 and token AND resolved as reduce (AND < LEFTSHIFT).
+    Conflict between rule 43 and token LESSTHAN resolved as reduce (LESSTHAN < LEFTSHIFT).
+    Conflict between rule 43 and token GREATERTHAN resolved as reduce (GREATERTHAN < LEFTSHIFT).
+    Conflict between rule 43 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < LEFTSHIFT).
+    Conflict between rule 43 and token NOTEQUAL resolved as reduce (NOTEQUAL < LEFTSHIFT).
+    Conflict between rule 43 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < LEFTSHIFT).
+    Conflict between rule 43 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < LEFTSHIFT).
+    Conflict between rule 43 and token BITWISEOR resolved as reduce (BITWISEOR < LEFTSHIFT).
+    Conflict between rule 43 and token BITWISEXOR resolved as reduce (BITWISEXOR < LEFTSHIFT).
+    Conflict between rule 43 and token BITWISEAND resolved as reduce (BITWISEAND < LEFTSHIFT).
+    Conflict between rule 43 and token LEFTSHIFT resolved as reduce (%left LEFTSHIFT).
+    Conflict between rule 43 and token RIGHTSHIFT resolved as reduce (%left RIGHTSHIFT).
+    Conflict between rule 43 and token PLUS resolved as shift (LEFTSHIFT < PLUS).
+    Conflict between rule 43 and token MINUS resolved as shift (LEFTSHIFT < MINUS).
+    Conflict between rule 43 and token STAR resolved as shift (LEFTSHIFT < STAR).
+    Conflict between rule 43 and token DIVISION resolved as shift (LEFTSHIFT < DIVISION).
+    Conflict between rule 43 and token REMAINDER resolved as shift (LEFTSHIFT < REMAINDER).
+    Conflict between rule 43 and token POWER resolved as shift (LEFTSHIFT < POWER).
+
+
+State 86
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   44           | expression RIGHTSHIFT expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT]
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    PLUS       shift, and go to state 60
+    MINUS      shift, and go to state 61
+    STAR       shift, and go to state 62
+    DIVISION   shift, and go to state 63
+    REMAINDER  shift, and go to state 64
+    POWER      shift, and go to state 65
+
+    $default  reduce using rule 44 (expression)
+
+    Conflict between rule 44 and token OR resolved as reduce (OR < RIGHTSHIFT).
+    Conflict between rule 44 and token AND resolved as reduce (AND < RIGHTSHIFT).
+    Conflict between rule 44 and token LESSTHAN resolved as reduce (LESSTHAN < RIGHTSHIFT).
+    Conflict between rule 44 and token GREATERTHAN resolved as reduce (GREATERTHAN < RIGHTSHIFT).
+    Conflict between rule 44 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < RIGHTSHIFT).
+    Conflict between rule 44 and token NOTEQUAL resolved as reduce (NOTEQUAL < RIGHTSHIFT).
+    Conflict between rule 44 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < RIGHTSHIFT).
+    Conflict between rule 44 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < RIGHTSHIFT).
+    Conflict between rule 44 and token BITWISEOR resolved as reduce (BITWISEOR < RIGHTSHIFT).
+    Conflict between rule 44 and token BITWISEXOR resolved as reduce (BITWISEXOR < RIGHTSHIFT).
+    Conflict between rule 44 and token BITWISEAND resolved as reduce (BITWISEAND < RIGHTSHIFT).
+    Conflict between rule 44 and token LEFTSHIFT resolved as reduce (%left LEFTSHIFT).
+    Conflict between rule 44 and token RIGHTSHIFT resolved as reduce (%left RIGHTSHIFT).
+    Conflict between rule 44 and token PLUS resolved as shift (RIGHTSHIFT < PLUS).
+    Conflict between rule 44 and token MINUS resolved as shift (RIGHTSHIFT < MINUS).
+    Conflict between rule 44 and token STAR resolved as shift (RIGHTSHIFT < STAR).
+    Conflict between rule 44 and token DIVISION resolved as shift (RIGHTSHIFT < DIVISION).
+    Conflict between rule 44 and token REMAINDER resolved as shift (RIGHTSHIFT < REMAINDER).
+    Conflict between rule 44 and token POWER resolved as shift (RIGHTSHIFT < POWER).
+
+
+State 87
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   41           | expression PLUS expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS]
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    STAR       shift, and go to state 62
+    DIVISION   shift, and go to state 63
+    REMAINDER  shift, and go to state 64
+    POWER      shift, and go to state 65
+
+    $default  reduce using rule 41 (expression)
+
+    Conflict between rule 41 and token OR resolved as reduce (OR < PLUS).
+    Conflict between rule 41 and token AND resolved as reduce (AND < PLUS).
+    Conflict between rule 41 and token LESSTHAN resolved as reduce (LESSTHAN < PLUS).
+    Conflict between rule 41 and token GREATERTHAN resolved as reduce (GREATERTHAN < PLUS).
+    Conflict between rule 41 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < PLUS).
+    Conflict between rule 41 and token NOTEQUAL resolved as reduce (NOTEQUAL < PLUS).
+    Conflict between rule 41 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < PLUS).
+    Conflict between rule 41 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < PLUS).
+    Conflict between rule 41 and token BITWISEOR resolved as reduce (BITWISEOR < PLUS).
+    Conflict between rule 41 and token BITWISEXOR resolved as reduce (BITWISEXOR < PLUS).
+    Conflict between rule 41 and token BITWISEAND resolved as reduce (BITWISEAND < PLUS).
+    Conflict between rule 41 and token LEFTSHIFT resolved as reduce (LEFTSHIFT < PLUS).
+    Conflict between rule 41 and token RIGHTSHIFT resolved as reduce (RIGHTSHIFT < PLUS).
+    Conflict between rule 41 and token PLUS resolved as reduce (%left PLUS).
+    Conflict between rule 41 and token MINUS resolved as reduce (%left MINUS).
+    Conflict between rule 41 and token STAR resolved as shift (PLUS < STAR).
+    Conflict between rule 41 and token DIVISION resolved as shift (PLUS < DIVISION).
+    Conflict between rule 41 and token REMAINDER resolved as shift (PLUS < REMAINDER).
+    Conflict between rule 41 and token POWER resolved as shift (PLUS < POWER).
+
+
+State 88
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   42           | expression MINUS expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS]
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    STAR       shift, and go to state 62
+    DIVISION   shift, and go to state 63
+    REMAINDER  shift, and go to state 64
+    POWER      shift, and go to state 65
+
+    $default  reduce using rule 42 (expression)
+
+    Conflict between rule 42 and token OR resolved as reduce (OR < MINUS).
+    Conflict between rule 42 and token AND resolved as reduce (AND < MINUS).
+    Conflict between rule 42 and token LESSTHAN resolved as reduce (LESSTHAN < MINUS).
+    Conflict between rule 42 and token GREATERTHAN resolved as reduce (GREATERTHAN < MINUS).
+    Conflict between rule 42 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < MINUS).
+    Conflict between rule 42 and token NOTEQUAL resolved as reduce (NOTEQUAL < MINUS).
+    Conflict between rule 42 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < MINUS).
+    Conflict between rule 42 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < MINUS).
+    Conflict between rule 42 and token BITWISEOR resolved as reduce (BITWISEOR < MINUS).
+    Conflict between rule 42 and token BITWISEXOR resolved as reduce (BITWISEXOR < MINUS).
+    Conflict between rule 42 and token BITWISEAND resolved as reduce (BITWISEAND < MINUS).
+    Conflict between rule 42 and token LEFTSHIFT resolved as reduce (LEFTSHIFT < MINUS).
+    Conflict between rule 42 and token RIGHTSHIFT resolved as reduce (RIGHTSHIFT < MINUS).
+    Conflict between rule 42 and token PLUS resolved as reduce (%left PLUS).
+    Conflict between rule 42 and token MINUS resolved as reduce (%left MINUS).
+    Conflict between rule 42 and token STAR resolved as shift (MINUS < STAR).
+    Conflict between rule 42 and token DIVISION resolved as shift (MINUS < DIVISION).
+    Conflict between rule 42 and token REMAINDER resolved as shift (MINUS < REMAINDER).
+    Conflict between rule 42 and token POWER resolved as shift (MINUS < POWER).
+
+
+State 89
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   38           | expression STAR expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS, STAR, DIVISION, REMAINDER]
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    POWER  shift, and go to state 65
+
+    $default  reduce using rule 38 (expression)
+
+    Conflict between rule 38 and token OR resolved as reduce (OR < STAR).
+    Conflict between rule 38 and token AND resolved as reduce (AND < STAR).
+    Conflict between rule 38 and token LESSTHAN resolved as reduce (LESSTHAN < STAR).
+    Conflict between rule 38 and token GREATERTHAN resolved as reduce (GREATERTHAN < STAR).
+    Conflict between rule 38 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < STAR).
+    Conflict between rule 38 and token NOTEQUAL resolved as reduce (NOTEQUAL < STAR).
+    Conflict between rule 38 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < STAR).
+    Conflict between rule 38 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < STAR).
+    Conflict between rule 38 and token BITWISEOR resolved as reduce (BITWISEOR < STAR).
+    Conflict between rule 38 and token BITWISEXOR resolved as reduce (BITWISEXOR < STAR).
+    Conflict between rule 38 and token BITWISEAND resolved as reduce (BITWISEAND < STAR).
+    Conflict between rule 38 and token LEFTSHIFT resolved as reduce (LEFTSHIFT < STAR).
+    Conflict between rule 38 and token RIGHTSHIFT resolved as reduce (RIGHTSHIFT < STAR).
+    Conflict between rule 38 and token PLUS resolved as reduce (PLUS < STAR).
+    Conflict between rule 38 and token MINUS resolved as reduce (MINUS < STAR).
+    Conflict between rule 38 and token STAR resolved as reduce (%left STAR).
+    Conflict between rule 38 and token DIVISION resolved as reduce (%left DIVISION).
+    Conflict between rule 38 and token REMAINDER resolved as reduce (%left REMAINDER).
+    Conflict between rule 38 and token POWER resolved as shift (STAR < POWER).
+
+
+State 90
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   39           | expression DIVISION expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS, STAR, DIVISION, REMAINDER]
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    POWER  shift, and go to state 65
+
+    $default  reduce using rule 39 (expression)
+
+    Conflict between rule 39 and token OR resolved as reduce (OR < DIVISION).
+    Conflict between rule 39 and token AND resolved as reduce (AND < DIVISION).
+    Conflict between rule 39 and token LESSTHAN resolved as reduce (LESSTHAN < DIVISION).
+    Conflict between rule 39 and token GREATERTHAN resolved as reduce (GREATERTHAN < DIVISION).
+    Conflict between rule 39 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < DIVISION).
+    Conflict between rule 39 and token NOTEQUAL resolved as reduce (NOTEQUAL < DIVISION).
+    Conflict between rule 39 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < DIVISION).
+    Conflict between rule 39 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < DIVISION).
+    Conflict between rule 39 and token BITWISEOR resolved as reduce (BITWISEOR < DIVISION).
+    Conflict between rule 39 and token BITWISEXOR resolved as reduce (BITWISEXOR < DIVISION).
+    Conflict between rule 39 and token BITWISEAND resolved as reduce (BITWISEAND < DIVISION).
+    Conflict between rule 39 and token LEFTSHIFT resolved as reduce (LEFTSHIFT < DIVISION).
+    Conflict between rule 39 and token RIGHTSHIFT resolved as reduce (RIGHTSHIFT < DIVISION).
+    Conflict between rule 39 and token PLUS resolved as reduce (PLUS < DIVISION).
+    Conflict between rule 39 and token MINUS resolved as reduce (MINUS < DIVISION).
+    Conflict between rule 39 and token STAR resolved as reduce (%left STAR).
+    Conflict between rule 39 and token DIVISION resolved as reduce (%left DIVISION).
+    Conflict between rule 39 and token REMAINDER resolved as reduce (%left REMAINDER).
+    Conflict between rule 39 and token POWER resolved as shift (DIVISION < POWER).
+
+
+State 91
+
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   40           | expression REMAINDER expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS, STAR, DIVISION, REMAINDER]
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    POWER  shift, and go to state 65
+
+    $default  reduce using rule 40 (expression)
+
+    Conflict between rule 40 and token OR resolved as reduce (OR < REMAINDER).
+    Conflict between rule 40 and token AND resolved as reduce (AND < REMAINDER).
+    Conflict between rule 40 and token LESSTHAN resolved as reduce (LESSTHAN < REMAINDER).
+    Conflict between rule 40 and token GREATERTHAN resolved as reduce (GREATERTHAN < REMAINDER).
+    Conflict between rule 40 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < REMAINDER).
+    Conflict between rule 40 and token NOTEQUAL resolved as reduce (NOTEQUAL < REMAINDER).
+    Conflict between rule 40 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < REMAINDER).
+    Conflict between rule 40 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < REMAINDER).
+    Conflict between rule 40 and token BITWISEOR resolved as reduce (BITWISEOR < REMAINDER).
+    Conflict between rule 40 and token BITWISEXOR resolved as reduce (BITWISEXOR < REMAINDER).
+    Conflict between rule 40 and token BITWISEAND resolved as reduce (BITWISEAND < REMAINDER).
+    Conflict between rule 40 and token LEFTSHIFT resolved as reduce (LEFTSHIFT < REMAINDER).
+    Conflict between rule 40 and token RIGHTSHIFT resolved as reduce (RIGHTSHIFT < REMAINDER).
+    Conflict between rule 40 and token PLUS resolved as reduce (PLUS < REMAINDER).
+    Conflict between rule 40 and token MINUS resolved as reduce (MINUS < REMAINDER).
+    Conflict between rule 40 and token STAR resolved as reduce (%left STAR).
+    Conflict between rule 40 and token DIVISION resolved as reduce (%left DIVISION).
+    Conflict between rule 40 and token REMAINDER resolved as reduce (%left REMAINDER).
+    Conflict between rule 40 and token POWER resolved as shift (REMAINDER < POWER).
+
+
+State 92
+
+   37 expression: expression . POWER expression
+   37           | expression POWER expression .  [SEMICOLON, EBRACE, COMMA, OR, AND, LESSTHAN, GREATERTHAN, DOUBLEEQUAL, NOTEQUAL, LESSTHOREQ, GREATTHOREQ, BITWISEOR, BITWISEXOR, BITWISEAND, LEFTSHIFT, RIGHTSHIFT, PLUS, MINUS, STAR, DIVISION, REMAINDER]
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    POWER  shift, and go to state 65
+
+    $default  reduce using rule 37 (expression)
+
+    Conflict between rule 37 and token OR resolved as reduce (OR < POWER).
+    Conflict between rule 37 and token AND resolved as reduce (AND < POWER).
+    Conflict between rule 37 and token LESSTHAN resolved as reduce (LESSTHAN < POWER).
+    Conflict between rule 37 and token GREATERTHAN resolved as reduce (GREATERTHAN < POWER).
+    Conflict between rule 37 and token DOUBLEEQUAL resolved as reduce (DOUBLEEQUAL < POWER).
+    Conflict between rule 37 and token NOTEQUAL resolved as reduce (NOTEQUAL < POWER).
+    Conflict between rule 37 and token LESSTHOREQ resolved as reduce (LESSTHOREQ < POWER).
+    Conflict between rule 37 and token GREATTHOREQ resolved as reduce (GREATTHOREQ < POWER).
+    Conflict between rule 37 and token BITWISEOR resolved as reduce (BITWISEOR < POWER).
+    Conflict between rule 37 and token BITWISEXOR resolved as reduce (BITWISEXOR < POWER).
+    Conflict between rule 37 and token BITWISEAND resolved as reduce (BITWISEAND < POWER).
+    Conflict between rule 37 and token LEFTSHIFT resolved as reduce (LEFTSHIFT < POWER).
+    Conflict between rule 37 and token RIGHTSHIFT resolved as reduce (RIGHTSHIFT < POWER).
+    Conflict between rule 37 and token PLUS resolved as reduce (PLUS < POWER).
+    Conflict between rule 37 and token MINUS resolved as reduce (MINUS < POWER).
+    Conflict between rule 37 and token STAR resolved as reduce (STAR < POWER).
+    Conflict between rule 37 and token DIVISION resolved as reduce (DIVISION < POWER).
+    Conflict between rule 37 and token REMAINDER resolved as reduce (REMAINDER < POWER).
+    Conflict between rule 37 and token POWER resolved as shift (%right POWER).
+
+
+State 93
+
+   10 decl: decl COMMA IDENTIFIER ASSIGNMENT expression .  [SEMICOLON, COMMA]
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 10 (decl)
+
+
+State 94
+
+   19 blockstmt: RETURN . expression SEMICOLON
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 103
+
+
+State 95
+
+   18 blockstmt: IF . OBRACE expression EBRACE OCBRACE blockstmts ECBRACE
+
+    OBRACE  shift, and go to state 104
+
+
+State 96
+
+   17 blockstmt: typeline .
+
+    $default  reduce using rule 17 (blockstmt)
+
+
+State 97
+
+    4 typeline: . header
+    5         | . declaration SEMICOLON
+    6         | . function
+    7 header: . HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+    8 declaration: . rettype decl
+   13 function: . rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+   13         | rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts . ECBRACE
+   14 blockstmts: blockstmts . blockstmt
+   16 blockstmt: . expression SEMICOLON
+   17          | . typeline
+   18          | . IF OBRACE expression EBRACE OCBRACE blockstmts ECBRACE
+   19          | . RETURN expression SEMICOLON
+   20 rettype: . TYPEAUTO
+   21        | . TYPEINT
+   22        | . TYPEFLOAT
+   23        | . TYPECHAR
+   24        | . TYPESTRING
+   25        | . TYPEVOID
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    TYPEINT     shift, and go to state 1
+    TYPEFLOAT   shift, and go to state 2
+    TYPECHAR    shift, and go to state 3
+    TYPESTRING  shift, and go to state 4
+    TYPEAUTO    shift, and go to state 5
+    TYPEVOID    shift, and go to state 6
+    RETURN      shift, and go to state 94
+    HASH        shift, and go to state 7
+    ECBRACE     shift, and go to state 105
+    IF          shift, and go to state 95
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    typeline     go to state 96
+    header       go to state 11
+    declaration  go to state 12
+    function     go to state 13
+    blockstmt    go to state 106
+    rettype      go to state 14
+    expression   go to state 99
+
+
+State 98
+
+   15 blockstmts: blockstmt .
+
+    $default  reduce using rule 15 (blockstmts)
+
+
+State 99
+
+   16 blockstmt: expression . SEMICOLON
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    SEMICOLON    shift, and go to state 107
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+
+State 100
+
+   27 argsdefinition: argsdefinition COMMA IDENTIFIER ASSIGNMENT . expression
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 108
+
+
+State 101
+
+   62 expression: IDENTIFIER OBRACE argscall EBRACE .
+
+    $default  reduce using rule 62 (expression)
+
+
+State 102
+
+   31 argscall: argscall COMMA . expression
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 109
+
+
+State 103
+
+   19 blockstmt: RETURN expression . SEMICOLON
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    SEMICOLON    shift, and go to state 110
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+
+State 104
+
+   18 blockstmt: IF OBRACE . expression EBRACE OCBRACE blockstmts ECBRACE
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    expression  go to state 111
+
+
+State 105
+
+   13 function: rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE .
+
+    $default  reduce using rule 13 (function)
+
+
+State 106
+
+   14 blockstmts: blockstmts blockstmt .
+
+    $default  reduce using rule 14 (blockstmts)
+
+
+State 107
+
+   16 blockstmt: expression SEMICOLON .
+
+    $default  reduce using rule 16 (blockstmt)
+
+
+State 108
+
+   27 argsdefinition: argsdefinition COMMA IDENTIFIER ASSIGNMENT expression .  [EBRACE, COMMA]
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 27 (argsdefinition)
+
+
+State 109
+
+   31 argscall: argscall COMMA expression .  [EBRACE, COMMA]
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+    $default  reduce using rule 31 (argscall)
+
+
+State 110
+
+   19 blockstmt: RETURN expression SEMICOLON .
+
+    $default  reduce using rule 19 (blockstmt)
+
+
+State 111
+
+   18 blockstmt: IF OBRACE expression . EBRACE OCBRACE blockstmts ECBRACE
+   37 expression: expression . POWER expression
+   38           | expression . STAR expression
+   39           | expression . DIVISION expression
+   40           | expression . REMAINDER expression
+   41           | expression . PLUS expression
+   42           | expression . MINUS expression
+   43           | expression . LEFTSHIFT expression
+   44           | expression . RIGHTSHIFT expression
+   45           | expression . BITWISEAND expression
+   46           | expression . BITWISEXOR expression
+   47           | expression . BITWISEOR expression
+   48           | expression . LESSTHAN expression
+   49           | expression . GREATERTHAN expression
+   50           | expression . DOUBLEEQUAL expression
+   51           | expression . NOTEQUAL expression
+   52           | expression . LESSTHOREQ expression
+   53           | expression . GREATTHOREQ expression
+   55           | expression . AND expression
+   56           | expression . OR expression
+
+    EBRACE       shift, and go to state 112
+    OR           shift, and go to state 47
+    AND          shift, and go to state 48
+    LESSTHAN     shift, and go to state 49
+    GREATERTHAN  shift, and go to state 50
+    DOUBLEEQUAL  shift, and go to state 51
+    NOTEQUAL     shift, and go to state 52
+    LESSTHOREQ   shift, and go to state 53
+    GREATTHOREQ  shift, and go to state 54
+    BITWISEOR    shift, and go to state 55
+    BITWISEXOR   shift, and go to state 56
+    BITWISEAND   shift, and go to state 57
+    LEFTSHIFT    shift, and go to state 58
+    RIGHTSHIFT   shift, and go to state 59
+    PLUS         shift, and go to state 60
+    MINUS        shift, and go to state 61
+    STAR         shift, and go to state 62
+    DIVISION     shift, and go to state 63
+    REMAINDER    shift, and go to state 64
+    POWER        shift, and go to state 65
+
+
+State 112
+
+   18 blockstmt: IF OBRACE expression EBRACE . OCBRACE blockstmts ECBRACE
+
+    OCBRACE  shift, and go to state 113
+
+
+State 113
+
+    4 typeline: . header
+    5         | . declaration SEMICOLON
+    6         | . function
+    7 header: . HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+    8 declaration: . rettype decl
+   13 function: . rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+   14 blockstmts: . blockstmts blockstmt
+   15           | . blockstmt
+   16 blockstmt: . expression SEMICOLON
+   17          | . typeline
+   18          | . IF OBRACE expression EBRACE OCBRACE blockstmts ECBRACE
+   18          | IF OBRACE expression EBRACE OCBRACE . blockstmts ECBRACE
+   19          | . RETURN expression SEMICOLON
+   20 rettype: . TYPEAUTO
+   21        | . TYPEINT
+   22        | . TYPEFLOAT
+   23        | . TYPECHAR
+   24        | . TYPESTRING
+   25        | . TYPEVOID
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    TYPEINT     shift, and go to state 1
+    TYPEFLOAT   shift, and go to state 2
+    TYPECHAR    shift, and go to state 3
+    TYPESTRING  shift, and go to state 4
+    TYPEAUTO    shift, and go to state 5
+    TYPEVOID    shift, and go to state 6
+    RETURN      shift, and go to state 94
+    HASH        shift, and go to state 7
+    IF          shift, and go to state 95
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    typeline     go to state 96
+    header       go to state 11
+    declaration  go to state 12
+    function     go to state 13
+    blockstmts   go to state 114
+    blockstmt    go to state 98
+    rettype      go to state 14
+    expression   go to state 99
+
+
+State 114
+
+    4 typeline: . header
+    5         | . declaration SEMICOLON
+    6         | . function
+    7 header: . HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+    8 declaration: . rettype decl
+   13 function: . rettype IDENTIFIER OBRACE argsdefinition EBRACE OCBRACE blockstmts ECBRACE
+   14 blockstmts: blockstmts . blockstmt
+   16 blockstmt: . expression SEMICOLON
+   17          | . typeline
+   18          | . IF OBRACE expression EBRACE OCBRACE blockstmts ECBRACE
+   18          | IF OBRACE expression EBRACE OCBRACE blockstmts . ECBRACE
+   19          | . RETURN expression SEMICOLON
+   20 rettype: . TYPEAUTO
+   21        | . TYPEINT
+   22        | . TYPEFLOAT
+   23        | . TYPECHAR
+   24        | . TYPESTRING
+   25        | . TYPEVOID
+   34 expression: . IDENTIFIER ASSIGNMENT expression
+   35           | . OBRACE expression EBRACE
+   36           | . BITWISEINV expression
+   37           | . expression POWER expression
+   38           | . expression STAR expression
+   39           | . expression DIVISION expression
+   40           | . expression REMAINDER expression
+   41           | . expression PLUS expression
+   42           | . expression MINUS expression
+   43           | . expression LEFTSHIFT expression
+   44           | . expression RIGHTSHIFT expression
+   45           | . expression BITWISEAND expression
+   46           | . expression BITWISEXOR expression
+   47           | . expression BITWISEOR expression
+   48           | . expression LESSTHAN expression
+   49           | . expression GREATERTHAN expression
+   50           | . expression DOUBLEEQUAL expression
+   51           | . expression NOTEQUAL expression
+   52           | . expression LESSTHOREQ expression
+   53           | . expression GREATTHOREQ expression
+   54           | . NOT expression
+   55           | . expression AND expression
+   56           | . expression OR expression
+   57           | . IDENTIFIER
+   58           | . INT
+   59           | . STRING
+   60           | . CHAR
+   61           | . FLOAT
+   62           | . IDENTIFIER OBRACE argscall EBRACE
+
+    INT         shift, and go to state 28
+    FLOAT       shift, and go to state 29
+    STRING      shift, and go to state 30
+    CHAR        shift, and go to state 31
+    IDENTIFIER  shift, and go to state 32
+    TYPEINT     shift, and go to state 1
+    TYPEFLOAT   shift, and go to state 2
+    TYPECHAR    shift, and go to state 3
+    TYPESTRING  shift, and go to state 4
+    TYPEAUTO    shift, and go to state 5
+    TYPEVOID    shift, and go to state 6
+    RETURN      shift, and go to state 94
+    HASH        shift, and go to state 7
+    ECBRACE     shift, and go to state 115
+    IF          shift, and go to state 95
+    OBRACE      shift, and go to state 33
+    NOT         shift, and go to state 34
+    BITWISEINV  shift, and go to state 35
+
+    typeline     go to state 96
+    header       go to state 11
+    declaration  go to state 12
+    function     go to state 13
+    blockstmt    go to state 106
+    rettype      go to state 14
+    expression   go to state 99
+
+
+State 115
+
+   18 blockstmt: IF OBRACE expression EBRACE OCBRACE blockstmts ECBRACE .
+
+    $default  reduce using rule 18 (blockstmt)
