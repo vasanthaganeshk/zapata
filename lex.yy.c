@@ -541,13 +541,32 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "tokenizer.l"
-#line 2 "tokenizer.l"
+/*
+Flex lexer for Zapata. 
+Copyright (C) 2015 Vasantha Ganesh K <vasanthaganesh.k@tuta.io>.
+
+This file is part of Zapata.
+
+Zapata is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Zapata is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Zapata.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#line 22 "tokenizer.l"
     #include <bits/stdc++.h>
     using namespace std;
     #include "parser.tab.h"
     extern "C" int yylex();
     int line_no = 1;
-#line 551 "lex.yy.c"
+#line 570 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -756,10 +775,10 @@ YY_DECL
 		}
 
 	{
-#line 9 "tokenizer.l"
+#line 29 "tokenizer.l"
 
 		/*--------Control flow--------*/
-#line 763 "lex.yy.c"
+#line 782 "lex.yy.c"
 
 	while ( 1 )		/* loops until end-of-file is reached */
 		{
@@ -818,282 +837,282 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 11 "tokenizer.l"
+#line 31 "tokenizer.l"
 return IF;
 	YY_BREAK
 /*--------Operators--------*/
 case 2:
 YY_RULE_SETUP
-#line 15 "tokenizer.l"
+#line 35 "tokenizer.l"
 return SEMICOLON;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "tokenizer.l"
+#line 36 "tokenizer.l"
 return OCBRACE;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 "tokenizer.l"
+#line 37 "tokenizer.l"
 return ECBRACE;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 18 "tokenizer.l"
+#line 38 "tokenizer.l"
 return OBRACE;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 "tokenizer.l"
+#line 39 "tokenizer.l"
 return EBRACE;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 20 "tokenizer.l"
+#line 40 "tokenizer.l"
 return OR;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 21 "tokenizer.l"
+#line 41 "tokenizer.l"
 return OR;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 22 "tokenizer.l"
+#line 42 "tokenizer.l"
 return AND;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 23 "tokenizer.l"
+#line 43 "tokenizer.l"
 return AND;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "tokenizer.l"
+#line 44 "tokenizer.l"
 return NOT;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 "tokenizer.l"
+#line 45 "tokenizer.l"
 return NOT;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 26 "tokenizer.l"
+#line 46 "tokenizer.l"
 return BITWISEINV;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 27 "tokenizer.l"
+#line 47 "tokenizer.l"
 return BITWISEAND;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 28 "tokenizer.l"
+#line 48 "tokenizer.l"
 return BITWISEXOR;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 29 "tokenizer.l"
+#line 49 "tokenizer.l"
 return BITWISEOR;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 30 "tokenizer.l"
+#line 50 "tokenizer.l"
 return POWER;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 31 "tokenizer.l"
+#line 51 "tokenizer.l"
 return STAR;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 32 "tokenizer.l"
+#line 52 "tokenizer.l"
 return DIVISION;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 33 "tokenizer.l"
+#line 53 "tokenizer.l"
 return REMAINDER;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 34 "tokenizer.l"
+#line 54 "tokenizer.l"
 return PLUS;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 35 "tokenizer.l"
+#line 55 "tokenizer.l"
 return MINUS;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 36 "tokenizer.l"
+#line 56 "tokenizer.l"
 return LESSTHAN;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 37 "tokenizer.l"
+#line 57 "tokenizer.l"
 return GREATERTHAN;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 38 "tokenizer.l"
+#line 58 "tokenizer.l"
 return LEFTSHIFT;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 39 "tokenizer.l"
+#line 59 "tokenizer.l"
 return RIGHTSHIFT;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 40 "tokenizer.l"
+#line 60 "tokenizer.l"
 return DOUBLEEQUAL;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 41 "tokenizer.l"
+#line 61 "tokenizer.l"
 return NOTEQUAL;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 42 "tokenizer.l"
+#line 62 "tokenizer.l"
 return LESSTHOREQ;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 43 "tokenizer.l"
+#line 63 "tokenizer.l"
 return GREATTHOREQ;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 44 "tokenizer.l"
+#line 64 "tokenizer.l"
 return ASSIGNMENT;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 45 "tokenizer.l"
+#line 65 "tokenizer.l"
 return HASH;
 	YY_BREAK
 /*--------Keywords--------*/
 case 33:
 YY_RULE_SETUP
-#line 48 "tokenizer.l"
+#line 68 "tokenizer.l"
 return TYPEAUTO;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 49 "tokenizer.l"
+#line 69 "tokenizer.l"
 return TYPEINT;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 50 "tokenizer.l"
+#line 70 "tokenizer.l"
 return TYPEFLOAT;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 51 "tokenizer.l"
+#line 71 "tokenizer.l"
 return TYPECHAR;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 52 "tokenizer.l"
+#line 72 "tokenizer.l"
 return TYPESTRING;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 53 "tokenizer.l"
+#line 73 "tokenizer.l"
 return TYPEVOID;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 54 "tokenizer.l"
+#line 74 "tokenizer.l"
 return RETURN;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 55 "tokenizer.l"
+#line 75 "tokenizer.l"
 return INCLUDE;
 	YY_BREAK
 /*--------Ignore--------*/
 case 41:
 YY_RULE_SETUP
-#line 59 "tokenizer.l"
+#line 79 "tokenizer.l"
 return USING;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 60 "tokenizer.l"
+#line 80 "tokenizer.l"
 return NAMESPACE;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 61 "tokenizer.l"
+#line 81 "tokenizer.l"
 return STD;
 	YY_BREAK
 /*--------Symbols--------*/
 case 44:
 YY_RULE_SETUP
-#line 64 "tokenizer.l"
+#line 84 "tokenizer.l"
 return COMMA;
 	YY_BREAK
 /*--------Comment--------*/
 case 45:
 YY_RULE_SETUP
-#line 68 "tokenizer.l"
+#line 88 "tokenizer.l"
 ;
 	YY_BREAK
 /*--------newline, spaces, intendation --------*/
 case 46:
 /* rule 46 can match eol */
 YY_RULE_SETUP
-#line 71 "tokenizer.l"
+#line 91 "tokenizer.l"
 {	++line_no;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 72 "tokenizer.l"
+#line 92 "tokenizer.l"
 ;
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 73 "tokenizer.l"
+#line 93 "tokenizer.l"
 {   yylval.fval = atof(yytext); return FLOAT;}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 74 "tokenizer.l"
+#line 94 "tokenizer.l"
 {   yylval.ival = atoi(yytext); return INT;}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 75 "tokenizer.l"
+#line 95 "tokenizer.l"
 {   yylval.sval = yytext; return STRING;}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 76 "tokenizer.l"
+#line 96 "tokenizer.l"
 {   yylval.sval = yytext; return CHAR;}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 77 "tokenizer.l"
+#line 97 "tokenizer.l"
 {   yylval.sval = yytext; return IDENTIFIER;}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 78 "tokenizer.l"
+#line 98 "tokenizer.l"
 ;
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 79 "tokenizer.l"
+#line 99 "tokenizer.l"
 ECHO;
 	YY_BREAK
-#line 1097 "lex.yy.c"
+#line 1116 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2088,6 +2107,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 79 "tokenizer.l"
+#line 99 "tokenizer.l"
 
 
