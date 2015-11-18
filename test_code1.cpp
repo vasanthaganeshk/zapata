@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int main()
+int
+main()
 {
 	string A = "haskdjf";
 	auto m = 9, asd = 9;

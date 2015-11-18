@@ -176,9 +176,72 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+class RePrint{
+	public:
+		RePrint(){			
+		}
+		~RePrint(){			
+		}
+		void reprint(char a, int n){
+			for(int i = 0; i<n; ++i){
+				cout<<a;
+			}
+		}
+};
+
+class NumDigits{
+	public:
+		NumDigits(){
+		}
+		~NumDigits(){
+		}
+		int num_digits(int x)  
+		{  
+		    x = abs(x);  
+		    return (x < 10 ? 1 :   
+		    	(x < 100 ? 2 :   
+		    	(x < 1000 ? 3 :   
+		    	(x < 10000 ? 4 :   
+		    	(x < 100000 ? 5 :   
+		    	(x < 1000000 ? 6 :   
+		    	(x < 10000000 ? 7 :  
+		    	(x < 100000000 ? 8 :  
+		    	(x < 1000000000 ? 9 :  
+		    	10)))))))));  
+		}
+};
+
+class pretty_print: public RePrint, public NumDigits{
+	public:
+		pretty_print(){
+		}
+		~pretty_print(){			
+		}
+};
+
+// wild hack for pretty printing
 void yyerror(char const *s){
-	cout<< "Message: " << s << endl;
-	printf("\033[1;31mError in line %d \033[0m\n", line_no);
+	pretty_print e1;
+
+	cout<<"+";
+	e1.RePrint::reprint('-', 78);
+	cout<<"+"<<endl;
+	cout<<"|  "<< "Message: " << s;
+	e1.RePrint::reprint(' ', 80 -13-strlen(s));
+	cout<<"|"<<endl;
+	cout<<"|  ";
+	e1.RePrint::reprint('=', strlen(s)+9);
+	e1.RePrint::reprint(' ', 80 -13-strlen(s));
+	cout<<"|";
+	cout<<endl;
+	cout<<"|  ";
+	printf("\033[1;31mError in line %d \033[0m", line_no);
+	e1.RePrint::reprint(' ', 61- e1.NumDigits::num_digits(line_no) );
+	cout<<"|";
+	cout<<endl;
+	cout<<"+";
+	e1.RePrint::reprint('-', 78);
+	cout<<"+"<<endl;
 	exit(1);
 }
 
