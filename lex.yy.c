@@ -1022,17 +1022,17 @@ return INCLUDE;
 case 41:
 YY_RULE_SETUP
 #line 59 "tokenizer.l"
-;
+return USING;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 60 "tokenizer.l"
-;
+return NAMESPACE;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 61 "tokenizer.l"
-;
+return STD;
 	YY_BREAK
 /*--------Symbols--------*/
 case 44:

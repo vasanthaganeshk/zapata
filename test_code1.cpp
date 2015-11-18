@@ -1,6 +1,5 @@
 #include <iostream>
-#include <cstdio>
-using namespace std
+using namespace std;
 
 int main()
 {
@@ -15,6 +14,7 @@ int main()
 	lsajdfl = "I am the one who knocks";
 	trew = "Fuck" + "You" + 923487.98273;
 	if("True"){
+		main();
 		a = "23874";
 		if("False"){
 			kjsd = "kdsjhfajks";
@@ -24,6 +24,8 @@ int main()
 			j = 90;
 			return -1;
 		}
+
+		asdfa = asdfasdfa;
 	}
 	return 0;
 }

@@ -56,9 +56,9 @@ include 							return INCLUDE;
 
 
 		/*--------Ignore--------*/
-using								;
-namespace 							;
-std 								;
+using								return USING;
+namespace 							return NAMESPACE;
+std 								return STD;
 
 		/*--------Symbols--------*/
 \,									return COMMA;

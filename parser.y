@@ -21,6 +21,9 @@
 %token <sval> CHAR
 %token IDENTIFIER
 
+%token USING
+%token NAMESPACE
+%token STD
 %token SEMICOLON
 %token TYPEINT
 %token TYPEFLOAT
@@ -71,6 +74,7 @@ typeline:
 
 header:
 	HASH INCLUDE LESSTHAN IDENTIFIER GREATERTHAN
+	USING NAMESPACE STD SEMICOLON
 	;
 
 declaration:
