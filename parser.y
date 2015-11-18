@@ -6,6 +6,7 @@
 	extern "C" FILE *yyin;
 	extern int line_no;
 
+
 	void yyerror(char const *s);
 %}
 
@@ -218,6 +219,7 @@ class pretty_print: public RePrint, public NumDigits{
 		~pretty_print(){			
 		}
 };
+
 
 // wild hack for pretty printing
 void yyerror(char const *s){

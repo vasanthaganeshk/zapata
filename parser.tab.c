@@ -71,9 +71,10 @@
 	extern "C" FILE *yyin;
 	extern int line_no;
 
+
 	void yyerror(char const *s);
 
-#line 77 "parser.tab.c" /* yacc.c:339  */
+#line 78 "parser.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -162,13 +163,13 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 12 "parser.y" /* yacc.c:355  */
+#line 13 "parser.y" /* yacc.c:355  */
 
 	int ival;
 	float fval;
 	char *sval;
 
-#line 172 "parser.tab.c" /* yacc.c:355  */
+#line 173 "parser.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -185,7 +186,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 189 "parser.tab.c" /* yacc.c:358  */
+#line 190 "parser.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -487,13 +488,13 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    61,    61,    65,    66,    70,    71,    72,    76,    81,
-      85,    86,    87,    88,    92,    96,    97,   101,   102,   103,
-     104,   108,   109,   110,   111,   112,   113,   117,   118,   119,
-     120,   121,   125,   126,   127,   131,   132,   133,   134,   135,
-     136,   137,   138,   139,   140,   141,   142,   143,   144,   145,
-     146,   147,   148,   149,   150,   151,   152,   153,   154,   155,
-     156,   157,   158,   159
+       0,    62,    62,    66,    67,    71,    72,    73,    77,    82,
+      86,    87,    88,    89,    93,    97,    98,   102,   103,   104,
+     105,   109,   110,   111,   112,   113,   114,   118,   119,   120,
+     121,   122,   126,   127,   128,   132,   133,   134,   135,   136,
+     137,   138,   139,   140,   141,   142,   143,   144,   145,   146,
+     147,   148,   149,   150,   151,   152,   153,   154,   155,   156,
+     157,   158,   159,   160
 };
 #endif
 
@@ -1389,7 +1390,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1393 "parser.tab.c" /* yacc.c:1646  */
+#line 1394 "parser.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1617,7 +1618,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 161 "parser.y" /* yacc.c:1906  */
+#line 162 "parser.y" /* yacc.c:1906  */
 
 
 int main(int argc, char *argv[])
@@ -1673,11 +1674,12 @@ class NumDigits{
 
 class pretty_print: public RePrint, public NumDigits{
 	public:
-		pretty_print(){			
+		pretty_print(){
 		}
 		~pretty_print(){			
 		}
 };
+
 
 // wild hack for pretty printing
 void yyerror(char const *s){
