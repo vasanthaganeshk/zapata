@@ -1,6 +1,7 @@
 /*
-Flex lexer for Zapata. 
-Copyright (C) 2015 Vasantha Ganesh K <vasanthaganesh.k@tuta.io>.
+Flex lexer for Zapata.
+Copyright (C) 2015 Vasantha Ganesh K <t.s.vedhachala@gmail.com>
+Copyright (C) 2015 Vasantha Ganesh K <vasanthaganesh.k@tuta.io>
 
 This file is part of Zapata.
 
