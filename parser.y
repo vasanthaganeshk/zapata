@@ -1,5 +1,6 @@
 /*
-Yacc parser for Zapata. 
+Yacc parser for Zapata.
+Copyright (C) 2015 Vedhachala T S <t.s.vedhachala@gmail.com> 
 Copyright (C) 2015 Vasantha Ganesh K <vasanthaganesh.k@tuta.io>.
 
 This file is part of Zapata.

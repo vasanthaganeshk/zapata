@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.4"
+#define YYBISON_VERSION "3.0.2"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 21 "parser.y" /* yacc.c:339  */
+#line 22 "parser.y" /* yacc.c:339  */
 
 	#include <bits/stdc++.h>
 	using namespace std;
@@ -160,10 +160,10 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-
+typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 33 "parser.y" /* yacc.c:355  */
+#line 34 "parser.y" /* yacc.c:355  */
 
 	int ival;
 	float fval;
@@ -171,8 +171,6 @@ union YYSTYPE
 
 #line 173 "parser.tab.c" /* yacc.c:355  */
 };
-
-typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -186,7 +184,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 190 "parser.tab.c" /* yacc.c:358  */
+#line 188 "parser.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -488,13 +486,13 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    82,    82,    86,    87,    91,    92,    93,    97,   102,
-     106,   107,   108,   109,   113,   117,   118,   122,   123,   124,
-     125,   129,   130,   131,   132,   133,   134,   138,   139,   140,
-     141,   142,   146,   147,   148,   152,   153,   154,   155,   156,
-     157,   158,   159,   160,   161,   162,   163,   164,   165,   166,
-     167,   168,   169,   170,   171,   172,   173,   174,   175,   176,
-     177,   178,   179,   180
+       0,    83,    83,    87,    88,    92,    93,    94,    98,   103,
+     107,   108,   109,   110,   114,   118,   119,   123,   124,   125,
+     126,   130,   131,   132,   133,   134,   135,   139,   140,   141,
+     142,   143,   147,   148,   149,   153,   154,   155,   156,   157,
+     158,   159,   160,   161,   162,   163,   164,   165,   166,   167,
+     168,   169,   170,   171,   172,   173,   174,   175,   176,   177,
+     178,   179,   180,   181
 };
 #endif
 
@@ -1390,7 +1388,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1394 "parser.tab.c" /* yacc.c:1646  */
+#line 1392 "parser.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1618,7 +1616,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 182 "parser.y" /* yacc.c:1906  */
+#line 183 "parser.y" /* yacc.c:1906  */
 
 
 int main(int argc, char *argv[])
